@@ -1,17 +1,15 @@
 <template>
     <div>
         <b-container class="container">
-            <MediaTile title="Braveheart" year="1995" img-source-uri="https://placekitten.com/380/200"/>
-            <MediaTile title="Braveheart" year="1995" img-source-uri="https://placekitten.com/380/200"/>
-            <MediaTile title="Braveheart" year="1995" img-source-uri="https://placekitten.com/380/200"/>
-            <MediaTile title="Braveheart" year="1995" img-source-uri="https://placekitten.com/380/200"/>
-            <MediaTile title="Braveheart" year="1995" img-source-uri="https://placekitten.com/380/200"/>
+            <template v-for="mediaTile in mediaTiles">
+                <MediaTile class='mx-2' :MediaTile="mediaTile"></MediaTile>
+            </template>
         </b-container>
     </div>
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from "vue-property-decorator";
+    import {Component, Prop, Vue} from "vue-property-decorator";
     import MediaTile from "@/components/MediaTile.vue";
 
     @Component({
@@ -19,8 +17,8 @@
             MediaTile,
         },
     })
-
     export default class MediaHorizontalList extends Vue {
+        @Prop() private mediaTiles: MediaTile[]; // todo this is hacky
     }
 </script>
 
@@ -28,8 +26,8 @@
     .container {
         display: flex;
         overflow-x: auto;
+        min-width: 100%;
     }
-
     ::-webkit-scrollbar {
         display: none;
     }
