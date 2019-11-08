@@ -29,4 +29,8 @@
         display: flex;
         overflow-x: auto;
     }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 </style>
