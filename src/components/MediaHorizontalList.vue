@@ -18,7 +18,7 @@
         },
     })
     export default class MediaHorizontalList extends Vue {
-        @Prop() private mediaTiles: MediaTile[]; // todo this is hacky
+        @Prop() private mediaTiles!: MediaTile[]; // todo this is hacky
     }
 </script>
 
