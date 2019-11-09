@@ -9,6 +9,14 @@
             <h1>Trending Movies</h1>
             <MediaHorizontalList class="MediaHorizontalList" :media-objs="trendingMovies"/>
         </div>
+        <div>
+            <h1>Anticipated Movies</h1>
+            <MediaHorizontalList class="MediaHorizontalList" :media-objs="anticipatedMovies"/>
+        </div>
+        <div>
+            <h1>Box Office Hits Last Weekend</h1>
+            <MediaHorizontalList class="MediaHorizontalList" :media-objs="boxOfficeMovies"/>
+        </div>
     </div>
 </template>
 
@@ -28,11 +36,15 @@
     export default class Home extends Vue {
         private popularMovies: Movie[] = [];
         private trendingMovies: Movie[] = [];
+        private anticipatedMovies: Movie[] = [];
+        private boxOfficeMovies: Movie[] = [];
 
         private async mounted() {
             const trakt = new TraktApi();
             this.popularMovies = await trakt.getMoviesPopular();
             this.trendingMovies = await trakt.getMoviesTrending();
+            this.anticipatedMovies = await trakt.getMoviesAnticipated();
+            this.boxOfficeMovies = await trakt.getMoviesGrossingBoxOffice();
         }
     }
 </script>

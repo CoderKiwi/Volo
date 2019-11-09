@@ -43,4 +43,32 @@ export default class TraktApi {
 
         return movies;
     }
+
+    public async getMoviesAnticipated(): Promise<Movie[]> {
+        const resultMovies = (await this.traktInstance.get('/movies/anticipated')).data;
+
+        // convert to Movie objects
+        const movies: Movie[] = [];
+        for (const resMov of resultMovies) {
+            const movData = resMov.movie;
+            const newIds = new Ids(movData.ids.trakt, movData.ids.slug, movData.ids.imdb, movData.ids.tmdb);
+            movies.push(new Movie(movData.title, movData.year, newIds));
+        }
+
+        return movies;
+    }
+
+    public async getMoviesGrossingBoxOffice(): Promise<Movie[]> {
+        const resultMovies = (await this.traktInstance.get('/movies/boxoffice')).data;
+
+        // convert to Movie objects
+        const movies: Movie[] = [];
+        for (const resMov of resultMovies) {
+            const movData = resMov.movie;
+            const newIds = new Ids(movData.ids.trakt, movData.ids.slug, movData.ids.imdb, movData.ids.tmdb);
+            movies.push(new Movie(movData.title, movData.year, newIds));
+        }
+
+        return movies;
+    }
 }
