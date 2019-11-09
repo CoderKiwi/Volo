@@ -2,25 +2,22 @@
     <div>
         <NavigationBar/>
         <div>
-            <h1>Trending Movies</h1>
-            <MediaHorizontalList class="MediaHorizontalList" :media-tiles="mediaTiles"/>
+            <h1>Popular Movies</h1>
+            <MediaHorizontalList class="MediaHorizontalList" :media-objs="popularMovies"/>
         </div>
         <div>
-            <h1>Anticipated</h1>
-            <MediaHorizontalList class="MediaHorizontalList" :media-tiles="mediaTiles"/>
-        </div>
-        <div>
-            <h1>Popular</h1>
-            <MediaHorizontalList class="MediaHorizontalList" :media-tiles="mediaTiles"/>
+            <h1>Popular Movies 2</h1>
+            <MediaHorizontalList class="MediaHorizontalList" :media-objs="popularMovies"/>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from "vue-property-decorator";
+    import {Component, Vue} from "vue-property-decorator";
     import NavigationBar from "@/components/NavigationBar.vue";
     import MediaHorizontalList from "@/components/MediaHorizontalList.vue";
-    import MediaTile from "@/components/MediaTile.vue";
+    import TraktApi from "@/services/TraktApi.ts";
+    import Movie from "@/models/Movie";
 
     @Component({
         components: {
@@ -29,7 +26,11 @@
         },
     })
     export default class Home extends Vue {
-        @Prop() private mediaTiles: MediaTile[] = [new MediaTile(), new MediaTile(), new MediaTile(), new MediaTile(), new MediaTile()]; // todo make a constructor do something
+        private popularMovies: Movie[] = [];
+
+        private async mounted() {
+            this.popularMovies = await new TraktApi().getMoviesPopular();
+        }
     }
 </script>
 

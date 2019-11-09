@@ -12,9 +12,9 @@
 
     @Component
     export default class MediaTile extends Vue {
-        @Prop({default: "Braveheart"}) private title!: string; // todo rm defaults
-        @Prop({default: 2019}) private year!: number;
-        @Prop({default: "https://placekitten.com/380/200"}) private imgSourceUri!: string;
+        @Prop() private title!: string; // todo maybe remove !
+        @Prop() private year!: number;
+        @Prop() private imgSourceUri!: string;
     }
 </script>
 
