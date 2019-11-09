@@ -6,8 +6,8 @@
             <MediaHorizontalList class="MediaHorizontalList" :media-objs="popularMovies"/>
         </div>
         <div>
-            <h1>Popular Movies 2</h1>
-            <MediaHorizontalList class="MediaHorizontalList" :media-objs="popularMovies"/>
+            <h1>Trending Movies</h1>
+            <MediaHorizontalList class="MediaHorizontalList" :media-objs="trendingMovies"/>
         </div>
     </div>
 </template>
@@ -27,9 +27,12 @@
     })
     export default class Home extends Vue {
         private popularMovies: Movie[] = [];
+        private trendingMovies: Movie[] = [];
 
         private async mounted() {
-            this.popularMovies = await new TraktApi().getMoviesPopular();
+            const trakt = new TraktApi();
+            this.popularMovies = await trakt.getMoviesPopular();
+            this.trendingMovies = await trakt.getMoviesTrending();
         }
     }
 </script>

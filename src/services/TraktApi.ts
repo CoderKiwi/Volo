@@ -29,4 +29,18 @@ export default class TraktApi {
         }
         return movies;
     }
+
+    public async getMoviesTrending(): Promise<Movie[]> {
+        const resultMovies = (await this.traktInstance.get('/movies/trending')).data;
+
+        // convert to Movie objects
+        const movies: Movie[] = [];
+        for (const resMov of resultMovies) {
+            const movData = resMov.movie;
+            const newIds = new Ids(movData.ids.trakt, movData.ids.slug, movData.ids.imdb, movData.ids.tmdb);
+            movies.push(new Movie(movData.title, movData.year, newIds));
+        }
+
+        return movies;
+    }
 }
