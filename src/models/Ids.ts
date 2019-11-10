@@ -10,4 +10,8 @@ export default class Ids {
         this._imdb = newImdb;
         this._tmdb = newTmdb;
     }
+
+    get imdb() {
+        return this._imdb;
+    }
 }

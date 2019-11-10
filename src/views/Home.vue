@@ -14,7 +14,7 @@
             <MediaHorizontalList class="MediaHorizontalList" :media-objs="anticipatedMovies"/>
         </div>
         <div>
-            <h1>Box Office Hits Last Weekend</h1>
+            <h1>Box Office Hits</h1>
             <MediaHorizontalList class="MediaHorizontalList" :media-objs="boxOfficeMovies"/>
         </div>
     </div>
@@ -40,11 +40,13 @@
         private boxOfficeMovies: Movie[] = [];
 
         private async mounted() {
-            const trakt = new TraktApi();
-            this.popularMovies = await trakt.getMoviesPopular();
-            this.trendingMovies = await trakt.getMoviesTrending();
-            this.anticipatedMovies = await trakt.getMoviesAnticipated();
-            this.boxOfficeMovies = await trakt.getMoviesGrossingBoxOffice();
+            const trakt = new TraktApi(); // todo
+            await Promise.all([
+                trakt.getMoviesPopular().then(result => this.popularMovies = result),
+                trakt.getMoviesTrending().then(result => this.trendingMovies = result),
+                trakt.getMoviesAnticipated().then(result => this.anticipatedMovies = result),
+                trakt.getMoviesGrossingBoxOffice().then(result => this.boxOfficeMovies = result)
+            ]);
         }
     }
 </script>

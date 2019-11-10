@@ -2,8 +2,10 @@
     <div>
         <b-container class="container">
             <template v-for="mediaObj in mediaObjs">
-                <MediaTile class='mx-2' :title="mediaObj.title" :year="mediaObj.year"
-                           img-source-uri="https://placekitten.com/380/200"></MediaTile>
+                <MediaTile class='mx-2'
+                           :title="mediaObj.title"
+                           :year="mediaObj.year"
+                           :img-source-uri="mediaObj.thumb"/>
             </template>
         </b-container>
     </div>

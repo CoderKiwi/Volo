@@ -2,17 +2,18 @@ import axios from 'axios';
 import Movie from '@/models/Movie';
 import Ids from '@/models/Ids';
 
+// todo need to handle errors
 export default class TraktApi {
-    private baseUrlTrakt = 'https://api.trakt.tv'; // todo cleanup globals
-    private traktClientKey = process.env.VUE_APP_TRAKT_CLIENT_ID as string;
+    private baseUrl = 'https://api.trakt.tv'; // todo cleanup
+    private clientId = process.env.VUE_APP_TRAKT_CLIENT_ID as string;
     private traktApiVersion = 2;
     private timeout = 10000;
     private traktInstance = axios.create({ // todo singleton
-        baseURL: this.baseUrlTrakt,
+        baseURL: this.baseUrl,
         timeout: this.timeout,
         headers: {
             'Content-type': 'application/json',
-            'trakt-api-key': this.traktClientKey,
+            'trakt-api-key': this.clientId,
             'trakt-api-version': this.traktApiVersion,
         },
     });
@@ -46,8 +47,8 @@ export default class TraktApi {
 
     }
 
+    /** Converts from a basic (NOT extended) Movie JSON list to Movie array */
     private static convertToMovies(resultMovies: any) {
-        /** Converts from a basic (NOT extended) Movie JSON list to Movie array*/
         const movies: Movie[] = [];
         for (const resMov of resultMovies) {
             const movData = resMov.movie;
@@ -56,5 +57,4 @@ export default class TraktApi {
         }
         return movies;
     }
-
 }

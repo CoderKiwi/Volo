@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-navbar toggleable="lg" type="dark" variant="dark">
-            <b-navbar-brand>Volo</b-navbar-brand>
+            <b-navbar-brand><h1>Volo</h1></b-navbar-brand>
         </b-navbar>
     </div>
 </template>
