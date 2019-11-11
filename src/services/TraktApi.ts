@@ -16,13 +16,11 @@ export default class TraktApi {
 
     /** Converts from a basic (NOT extended) Trakt movie-type list to Movie array */
     private static convertToMovies(resultMovies: any) {
-        const movies: Movie[] = [];
-        for (const resMov of resultMovies) {
+        return resultMovies.map((resMov: any) => {
             const movData = resMov.movie;
             const newIds = new Ids(movData.ids.trakt, movData.ids.slug, movData.ids.imdb, movData.ids.tmdb);
-            movies.push(new Movie(movData.title, movData.year, newIds));
-        }
-        return movies;
+            return new Movie(movData.title, movData.year, newIds);
+        });
     }
 
     private constructor() {
