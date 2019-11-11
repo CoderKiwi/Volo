@@ -40,7 +40,10 @@ export default class TraktApi {
         const movies: Movie[] = [];
         for (const resMov of resultMovies) {
             const newIds = new Ids(resMov.ids.trakt, resMov.ids.slug, resMov.ids.imdb, resMov.ids.tmdb);
-            movies.push(new Movie(resMov.title, resMov.year, newIds));
+        return resultMovies.map((resMov: any) => {
+            const newIds = new Ids(resMov.ids.trakt, resMov.ids.slug, resMov.ids.imdb, resMov.ids.tmdb);
+            return new Movie(resMov.title, resMov.year, newIds);
+        });
         }
         return movies;
     }
