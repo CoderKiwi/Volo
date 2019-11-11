@@ -12,9 +12,9 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from "vue-property-decorator";
-    import MediaTile from "@/components/MediaTile.vue";
-    import Movie from "@/models/Movie";
+    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import MediaTile from '@/components/MediaTile.vue';
+    import Movie from '@/models/Movie';
 
     @Component({
         components: {

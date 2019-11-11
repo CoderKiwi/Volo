@@ -21,11 +21,11 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from "vue-property-decorator";
-    import NavigationBar from "@/components/NavigationBar.vue";
-    import MediaHorizontalList from "@/components/MediaHorizontalList.vue";
-    import TraktApi from "@/services/TraktApi.ts";
-    import Movie from "@/models/Movie";
+    import {Component, Vue} from 'vue-property-decorator';
+    import NavigationBar from '@/components/NavigationBar.vue';
+    import MediaHorizontalList from '@/components/MediaHorizontalList.vue';
+    import TraktApi from '@/services/TraktApi.ts';
+    import Movie from '@/models/Movie';
 
     @Component({
         components: {
@@ -34,13 +34,13 @@
         },
     })
     export default class Home extends Vue {
-        private popularMoviesHeading = "Popular Movies";
+        private popularMoviesHeading = 'Popular Movies';
         private popularMovies: Movie[] = [];
-        private trendingMoviesHeading = "Trending Movies";
+        private trendingMoviesHeading = 'Trending Movies';
         private trendingMovies: Movie[] = [];
-        private anticipatedMoviesHeading = "Anticipated Movies";
+        private anticipatedMoviesHeading = 'Anticipated Movies';
         private anticipatedMovies: Movie[] = [];
-        private boxOfficeMoviesHeading = "Box Office Hits";
+        private boxOfficeMoviesHeading = 'Box Office Hits';
         private boxOfficeMovies: Movie[] = [];
 
         private async mounted() {

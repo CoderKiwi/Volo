@@ -9,13 +9,13 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from "vue-property-decorator";
+    import {Component, Prop, Vue} from 'vue-property-decorator';
 
     @Component
     export default class MediaTile extends Vue {
         @Prop() private title!: string;
         @Prop() private year!: number;
-        @Prop() private imgSourceUri: string = require("@/assets/no-image.png");
+        @Prop() private imgSourceUri: string = require('@/assets/no-image.png');
     }
 </script>
 

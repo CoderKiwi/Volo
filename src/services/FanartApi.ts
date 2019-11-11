@@ -4,7 +4,6 @@ import axios, {AxiosInstance} from 'axios';
 export default class FanartApi {
 
     private static _instance: FanartApi;
-    private projectKey = process.env.VUE_APP_FANART_PROJECT_KEY as string;
     private static fanartInstance: AxiosInstance = axios.create({
         baseURL: 'https://webservice.fanart.tv/v3',
         timeout: 10000,
@@ -12,6 +11,7 @@ export default class FanartApi {
             'Content-type': 'application/json',
         },
     });
+    private projectKey = process.env.VUE_APP_FANART_PROJECT_KEY as string;
 
     private constructor() {
 
