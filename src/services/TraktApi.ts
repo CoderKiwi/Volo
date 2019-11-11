@@ -37,15 +37,10 @@ export default class TraktApi {
         const resultMovies = (await TraktApi.traktInstance.get('/movies/popular')).data;
 
         // convert to Movie objects
-        const movies: Movie[] = [];
-        for (const resMov of resultMovies) {
-            const newIds = new Ids(resMov.ids.trakt, resMov.ids.slug, resMov.ids.imdb, resMov.ids.tmdb);
         return resultMovies.map((resMov: any) => {
             const newIds = new Ids(resMov.ids.trakt, resMov.ids.slug, resMov.ids.imdb, resMov.ids.tmdb);
             return new Movie(resMov.title, resMov.year, newIds);
         });
-        }
-        return movies;
     }
 
     public async getMoviesTrending(): Promise<Movie[]> {
