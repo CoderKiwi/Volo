@@ -1,12 +1,12 @@
 <template>
     <div>
         <b-container class="container">
-            <template v-for="mediaObj in mediaObjs">
+            <div v-for="mediaObj in mediaObjs" :key='mediaObj.ids.imdb'>
                 <MediaTile class='mx-2'
                            :title="mediaObj.title"
                            :year="mediaObj.year"
                            :img-source-uri="mediaObj.thumb"/>
-            </template>
+            </div>
         </b-container>
     </div>
 </template>

@@ -42,10 +42,10 @@
         private async mounted() {
             const trakt = new TraktApi(); // todo
             await Promise.all([
-                trakt.getMoviesPopular().then(result => this.popularMovies = result),
-                trakt.getMoviesTrending().then(result => this.trendingMovies = result),
-                trakt.getMoviesAnticipated().then(result => this.anticipatedMovies = result),
-                trakt.getMoviesGrossingBoxOffice().then(result => this.boxOfficeMovies = result)
+                trakt.getMoviesPopular().then((result) => this.popularMovies = result),
+                trakt.getMoviesTrending().then((result) => this.trendingMovies = result),
+                trakt.getMoviesAnticipated().then((result) => this.anticipatedMovies = result),
+                trakt.getMoviesGrossingBoxOffice().then((result) => this.boxOfficeMovies = result),
             ]);
         }
     }
