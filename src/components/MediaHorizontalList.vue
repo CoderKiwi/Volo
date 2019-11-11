@@ -5,7 +5,7 @@
                 <MediaTile class='mx-2'
                            :title="mediaObj.title"
                            :year="mediaObj.year"
-                           :img-source-uri="mediaObj.thumb"/>
+                           :img-source-uri="mediaObj.thumbUrl"/>
             </div>
         </b-container>
     </div>

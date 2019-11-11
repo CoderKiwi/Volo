@@ -1,6 +1,6 @@
 <template>
     <div class="MediaTile">
-        <b-img class="image" :src="imgSourceUri" :alt="title+' Thumbnail'" fluid rounded/>
+        <b-img-lazy class="image" :src="imgSourceUri" :alt="title+' Thumbnail'" fluid rounded/>
         <div>
             {{ title }} ({{ year }})
             <!--            todo make the text slide across when too long for image-->
@@ -15,7 +15,7 @@
     export default class MediaTile extends Vue {
         @Prop() private title!: string;
         @Prop() private year!: number;
-        @Prop() private imgSourceUri?: string;
+        @Prop() private imgSourceUri: string = require("@/assets/no-image.png");
     }
 </script>
 

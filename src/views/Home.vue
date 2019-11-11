@@ -40,12 +40,11 @@
         private boxOfficeMovies: Movie[] = [];
 
         private async mounted() {
-            const trakt = new TraktApi(); // todo
             await Promise.all([
-                trakt.getMoviesPopular().then((result) => this.popularMovies = result),
-                trakt.getMoviesTrending().then((result) => this.trendingMovies = result),
-                trakt.getMoviesAnticipated().then((result) => this.anticipatedMovies = result),
-                trakt.getMoviesGrossingBoxOffice().then((result) => this.boxOfficeMovies = result),
+                TraktApi.instance.getMoviesPopular().then((result) => this.popularMovies = result),
+                TraktApi.instance.getMoviesTrending().then((result) => this.trendingMovies = result),
+                TraktApi.instance.getMoviesAnticipated().then((result) => this.anticipatedMovies = result),
+                TraktApi.instance.getMoviesGrossingBoxOffice().then((result) => this.boxOfficeMovies = result),
             ]);
         }
     }

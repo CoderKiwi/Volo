@@ -1,10 +1,11 @@
-import axios from 'axios';
+import axios, {AxiosInstance} from 'axios';
 import Movie from '@/models/Movie';
 import Ids from '@/models/Ids';
 
 // todo need to handle errors
 export default class TraktApi {
-    private static traktInstance = axios.create({ // todo singleton
+    private static _instance: TraktApi;
+    private static traktInstance: AxiosInstance = axios.create({
         baseURL: 'https://api.trakt.tv',
         timeout: 10000,
         headers: {
@@ -23,6 +24,14 @@ export default class TraktApi {
             movies.push(new Movie(movData.title, movData.year, newIds));
         }
         return movies;
+    }
+
+    private constructor() {
+
+    }
+
+    public static get instance() {
+        return this._instance || (this._instance = new this());
     }
 
     public async getMoviesPopular(): Promise<Movie[]> {
