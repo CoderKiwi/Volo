@@ -2,7 +2,6 @@ import axios, {AxiosInstance} from 'axios';
 import Movie from '@/models/Movie';
 import Ids from '@/models/Ids';
 
-// todo need to handle errors
 export default class TraktApi {
     private static _instance: TraktApi;
     private static traktInstance: AxiosInstance = axios.create({

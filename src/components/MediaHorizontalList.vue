@@ -1,14 +1,12 @@
 <template>
-    <div>
-        <b-container class="container">
-            <div v-for="mediaObj in mediaObjs" :key='mediaObj.ids.imdb'>
-                <MediaTile class='mx-2'
-                           :title="mediaObj.title"
-                           :year="mediaObj.year"
-                           :img-source-uri="mediaObj.thumbUrl"/>
-            </div>
-        </b-container>
-    </div>
+    <b-container class="container">
+        <div v-for="mediaObj in mediaObjs" :key='mediaObj.ids.imdb'>
+            <MediaTile class='mx-2'
+                       :title="mediaObj.title"
+                       :year="mediaObj.year"
+                       :img-source-uri="mediaObj.thumbUrl"/>
+        </div>
+    </b-container>
 </template>
 
 <script lang="ts">

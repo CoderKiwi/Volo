@@ -1,6 +1,5 @@
 import axios, {AxiosInstance} from 'axios';
 
-// todo need to handle errors
 export default class FanartApi {
 
     private static _instance: FanartApi;
@@ -29,8 +28,5 @@ export default class FanartApi {
         }).then((response) => {
             return response.data.moviethumb[0].url as string;
         });
-        //     .catch(error => {
-        //     return Promise.reject(error.response); // todo fix
-        // });
     }
 }
