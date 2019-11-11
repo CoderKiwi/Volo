@@ -2,19 +2,19 @@
     <div>
         <NavigationBar/>
         <div>
-            <h1>Popular Movies</h1>
+            <h1>{{ popularMoviesHeading }}</h1>
             <MediaHorizontalList class="MediaHorizontalList" :media-objs="popularMovies"/>
         </div>
         <div>
-            <h1>Trending Movies</h1>
+            <h1>{{ trendingMoviesHeading }}</h1>
             <MediaHorizontalList class="MediaHorizontalList" :media-objs="trendingMovies"/>
         </div>
         <div>
-            <h1>Anticipated Movies</h1>
+            <h1>{{ anticipatedMoviesHeading }}</h1>
             <MediaHorizontalList class="MediaHorizontalList" :media-objs="anticipatedMovies"/>
         </div>
         <div>
-            <h1>Box Office Hits</h1>
+            <h1>{{ boxOfficeMoviesHeading }}</h1>
             <MediaHorizontalList class="MediaHorizontalList" :media-objs="boxOfficeMovies"/>
         </div>
     </div>
@@ -34,9 +34,13 @@
         },
     })
     export default class Home extends Vue {
+        private popularMoviesHeading = "Popular Movies";
         private popularMovies: Movie[] = [];
+        private trendingMoviesHeading = "Trending Movies";
         private trendingMovies: Movie[] = [];
+        private anticipatedMoviesHeading = "Anticipated Movies";
         private anticipatedMovies: Movie[] = [];
+        private boxOfficeMoviesHeading = "Box Office Hits";
         private boxOfficeMovies: Movie[] = [];
 
         private async mounted() {
