@@ -28,7 +28,10 @@
         display: flex;
         overflow-x: auto;
         min-width: 100%;
+        -ms-overflow-style: -ms-autohiding-scrollbar; /* Edge */
+        scrollbar-width: none; /* experimental support in Firefox */
     }
+
     ::-webkit-scrollbar {
         display: none;
     }
