@@ -1,3 +1,4 @@
+<!--suppress CssUnknownProperty due to experimental CSS support in Firefox -->
 <template>
     <b-container class="container">
         <MediaTile v-for="mediaObj in mediaObjs" :key='mediaObj.ids.imdb'
@@ -19,7 +20,7 @@
         },
     })
     export default class MediaHorizontalList extends Vue {
-        @Prop() private mediaObjs: Movie[] = [];
+        @Prop() private mediaObjs!: Movie[];
     }
 </script>
 

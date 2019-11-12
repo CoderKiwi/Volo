@@ -20,13 +20,18 @@ export default class FanartApi {
         return this._instance || (this._instance = new this());
     }
 
+    /** Fetches the top thumbnail URL of the given media or returns the URI to the 'no image' asset */
     public async getMovieThumb(imdbOrTvdbId: string): Promise<string> {
-        return await FanartApi.fanartInstance.get(`/movies/${imdbOrTvdbId}`, {
-            params: {
-                api_key: this.projectKey,
-            },
-        }).then((response) => {
-            return response.data.moviethumb[0].url as string;
-        });
+        try {
+            return await FanartApi.fanartInstance.get(`/movies/${imdbOrTvdbId}`, {
+                params: {
+                    api_key: this.projectKey,
+                },
+            }).then((response) => {
+                return response.data.moviethumb[0].url as string;
+            });
+        } catch (error) {
+            return require('@/assets/no-image.png');
+        }
     }
 }
