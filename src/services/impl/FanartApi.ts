@@ -1,6 +1,7 @@
 import axios, {AxiosInstance} from 'axios';
+import IMediaImageService from '@/services/IMediaImageService';
 
-export default class FanartApi {
+export default class FanartApi implements IMediaImageService {
 
     private static _instance: FanartApi;
     private static fanartInstance: AxiosInstance = axios.create({

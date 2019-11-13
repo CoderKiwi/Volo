@@ -1,8 +1,9 @@
 import axios, {AxiosInstance} from 'axios';
 import Movie from '@/models/Movie';
 import Ids from '@/models/Ids';
+import IMediaMetadataService from '@/services/IMediaMetadataService';
 
-export default class TraktApi {
+export default class TraktApi implements IMediaMetadataService {
     private static _instance: TraktApi;
     private static traktInstance: AxiosInstance = axios.create({
         baseURL: 'https://api.trakt.tv',
@@ -49,12 +50,10 @@ export default class TraktApi {
     public async getMoviesAnticipated(): Promise<Movie[]> {
         const resultMovies = (await TraktApi.traktInstance.get('/movies/anticipated')).data;
         return TraktApi.convertToMovies(resultMovies);
-
     }
 
     public async getMoviesGrossingBoxOffice(): Promise<Movie[]> {
         const resultMovies = (await TraktApi.traktInstance.get('/movies/boxoffice')).data;
         return TraktApi.convertToMovies(resultMovies);
-
     }
 }

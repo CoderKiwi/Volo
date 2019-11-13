@@ -1,5 +1,5 @@
 import Ids from '@/models/Ids';
-import FanartApi from '@/services/FanartApi';
+import FanartApi from '@/services/impl/FanartApi';
 
 export default class Movie {
     private readonly _title: string;

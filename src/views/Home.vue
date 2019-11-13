@@ -24,7 +24,7 @@
     import {Component, Vue} from 'vue-property-decorator';
     import NavigationBar from '@/components/NavigationBar.vue';
     import MediaHorizontalList from '@/components/MediaHorizontalList.vue';
-    import TraktApi from '@/services/TraktApi.ts';
+    import TraktApi from '@/services/impl/TraktApi.ts';
     import Movie from '@/models/Movie';
 
     @Component({

@@ -1,6 +1,6 @@
 <template>
     <div class="MediaTile">
-        <b-img class="image" :src="imgSourceUri" :alt="title+' Thumbnail'" fluid rounded></b-img>
+        <b-img :alt="title+' Thumbnail'" :src="imgSourceUri" class="image" fluid rounded/>
         <div>
             {{ title }} ({{ year }})
         </div>
