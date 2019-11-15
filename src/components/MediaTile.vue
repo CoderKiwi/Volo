@@ -2,7 +2,7 @@
     <div class="MediaTile">
         <b-img :alt="title+' Thumbnail'" :src="imgSourceUri" class="image" fluid rounded/>
         <div>
-            {{ title }} ({{ year }})
+            {{ tileTitle }}
         </div>
     </div>
 </template>
@@ -15,6 +15,11 @@
         @Prop() private title!: string;
         @Prop() private year!: number;
         @Prop() private imgSourceUri!: string;
+
+        get tileTitle() {
+            console.log(this.year);
+            return this.year != null ? `${this.title} (${this.year})` : `${this.title}`;
+        }
     }
 </script>
 
