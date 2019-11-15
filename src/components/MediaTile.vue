@@ -17,7 +17,6 @@
         @Prop() private imgSourceUri!: string;
 
         get tileTitle() {
-            console.log(this.year);
             return this.year != null ? `${this.title} (${this.year})` : `${this.title}`;
         }
     }
