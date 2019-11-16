@@ -4,7 +4,7 @@
             <b-navbar-brand><h1>Volo</h1></b-navbar-brand>
             <b-navbar-nav class="ml-auto">
                 <b-button v-b-modal.about-modal>About</b-button>
-                <b-modal id="about-modal" hide-footer="true" title="About Volo">
+                <b-modal id="about-modal" :hide-footer="true" title="About Volo">
                     <p class="my-1">Volo is powered by several great resources. Please support them!</p>
                     <p></p>
                     <b-container>

@@ -22,7 +22,7 @@
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
-    import {Inject} from 'inversify-props';
+    import {cid, Inject} from 'inversify-props';
     import NavigationBar from '@/components/NavigationBar.vue';
     import MediaHorizontalList from '@/components/MediaHorizontalList.vue';
     import Movie from '@/models/Movie';
@@ -36,8 +36,8 @@
         },
     })
     export default class Home extends Vue {
-        @Inject() private mediaMetadataService!: IMediaMetadataService;
-        @Inject() private mediaImageService!: IMediaImageService;
+        @Inject(cid.IMediaMetadataService) private TraktApi!: IMediaMetadataService;
+        @Inject(cid.IMediaImageService) private FanartApi!: IMediaImageService;
 
         private popularMoviesHeading = 'Popular Movies';
         private popularMovies: Movie[] = [];
@@ -49,19 +49,19 @@
         private boxOfficeMovies: Movie[] = [];
 
         private async mounted() {
-            this.mediaMetadataService.getMoviesPopular().then((result) => {
+            this.TraktApi.getMoviesPopular().then((result) => {
                 this.popularMovies = result;
                 return this.loadThumbnails(result);
             });
-            this.mediaMetadataService.getMoviesTrending().then((result) => {
+            this.TraktApi.getMoviesTrending().then((result) => {
                 this.trendingMovies = result;
                 return this.loadThumbnails(result);
             });
-            this.mediaMetadataService.getMoviesAnticipated().then((result) => {
+            this.TraktApi.getMoviesAnticipated().then((result) => {
                 this.anticipatedMovies = result;
                 return this.loadThumbnails(result);
             });
-            this.mediaMetadataService.getMoviesGrossingBoxOffice().then((result) => {
+            this.TraktApi.getMoviesGrossingBoxOffice().then((result) => {
                 this.boxOfficeMovies = result;
                 return this.loadThumbnails(result);
             });
@@ -69,7 +69,7 @@
 
         private async loadThumbnails(movies: Movie[]): Promise<void> {
             for (const movie of movies) {
-                this.mediaImageService.getMovieThumb(movie.ids.imdb)
+                this.FanartApi.getMovieThumb(movie.ids.imdb)
                     .then((result) => movie.thumbUrl = result);
             }
         }
