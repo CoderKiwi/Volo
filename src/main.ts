@@ -1,5 +1,4 @@
 import 'reflect-metadata';  // sets up Reflect namespace, must be imported before dependency injection used
-import buildDependencyContainer from '@/inversify.config';
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
@@ -9,12 +8,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 class AppBootstrap {
     constructor() {
-        this.loadDependencyContainer();
+        // this.loadDependencyContainer();
         this.loadVueApp();
-    }
-
-    private loadDependencyContainer(): void {
-        buildDependencyContainer();
     }
 
     private loadVueApp(): void {

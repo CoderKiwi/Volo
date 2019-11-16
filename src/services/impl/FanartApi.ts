@@ -1,6 +1,6 @@
 import axios, {AxiosInstance} from 'axios';
 import IMediaImageService from '@/services/IMediaImageService';
-import {injectable} from 'inversify-props';
+import {injectable} from 'inversify';
 
 @injectable()
 export default class FanartApi implements IMediaImageService {

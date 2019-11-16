@@ -22,12 +22,14 @@
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
-    import {cid, Inject} from 'inversify-props';
     import NavigationBar from '@/components/NavigationBar.vue';
     import MediaHorizontalList from '@/components/MediaHorizontalList.vue';
     import Movie from '@/models/Movie';
     import IMediaMetadataService from '@/services/IMediaMetadataService';
     import IMediaImageService from '@/services/IMediaImageService';
+    import { TYPES } from '../types';
+    import {inject, injectable} from 'inversify';
+    import {myContainer} from "@/inversify.config";
 
     @Component({
         components: {
@@ -35,9 +37,11 @@
             MediaHorizontalList,
         },
     })
+    @injectable()
     export default class Home extends Vue {
-        @Inject(cid.IMediaMetadataService) private TraktApi!: IMediaMetadataService;
-        @Inject(cid.IMediaImageService) private FanartApi!: IMediaImageService;
+        // todo this is the service locator anti pattern. need to register these in the 'root' component
+        @inject(TYPES.IMediaMetadataService) private TraktApi: IMediaMetadataService = myContainer.get<IMediaMetadataService>(TYPES.IMediaMetadataService);
+        @inject(TYPES.IMediaImageService) private FanartApi: IMediaImageService = myContainer.get<IMediaImageService>(TYPES.IMediaImageService);
 
         private popularMoviesHeading = 'Popular Movies';
         private popularMovies: Movie[] = [];

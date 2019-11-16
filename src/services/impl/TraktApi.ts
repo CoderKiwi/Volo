@@ -2,7 +2,7 @@ import axios, {AxiosInstance} from 'axios';
 import Movie from '@/models/Movie';
 import Ids from '@/models/Ids';
 import IMediaMetadataService from '@/services/IMediaMetadataService';
-import {injectable} from 'inversify-props';
+import {injectable} from 'inversify';
 
 @injectable()
 export default class TraktApi implements IMediaMetadataService {
