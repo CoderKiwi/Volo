@@ -22,10 +22,12 @@
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
+    import {Inject} from 'inversify-props';
     import NavigationBar from '@/components/NavigationBar.vue';
     import MediaHorizontalList from '@/components/MediaHorizontalList.vue';
-    import TraktApi from '@/services/impl/TraktApi.ts';
     import Movie from '@/models/Movie';
+    import IMediaMetadataService from '@/services/IMediaMetadataService';
+    import IMediaImageService from '@/services/IMediaImageService';
 
     @Component({
         components: {
@@ -34,6 +36,9 @@
         },
     })
     export default class Home extends Vue {
+        @Inject() private mediaMetadataService!: IMediaMetadataService;
+        @Inject() private mediaImageService!: IMediaImageService;
+
         private popularMoviesHeading = 'Popular Movies';
         private popularMovies: Movie[] = [];
         private trendingMoviesHeading = 'Trending Movies';
@@ -44,10 +49,29 @@
         private boxOfficeMovies: Movie[] = [];
 
         private async mounted() {
-            TraktApi.instance.getMoviesPopular().then((result) => this.popularMovies = result);
-            TraktApi.instance.getMoviesTrending().then((result) => this.trendingMovies = result);
-            TraktApi.instance.getMoviesAnticipated().then((result) => this.anticipatedMovies = result);
-            TraktApi.instance.getMoviesGrossingBoxOffice().then((result) => this.boxOfficeMovies = result);
+            this.mediaMetadataService.getMoviesPopular().then((result) => {
+                this.popularMovies = result;
+                return this.loadThumbnails(result);
+            });
+            this.mediaMetadataService.getMoviesTrending().then((result) => {
+                this.trendingMovies = result;
+                return this.loadThumbnails(result);
+            });
+            this.mediaMetadataService.getMoviesAnticipated().then((result) => {
+                this.anticipatedMovies = result;
+                return this.loadThumbnails(result);
+            });
+            this.mediaMetadataService.getMoviesGrossingBoxOffice().then((result) => {
+                this.boxOfficeMovies = result;
+                return this.loadThumbnails(result);
+            });
+        }
+
+        private async loadThumbnails(movies: Movie[]): Promise<void> {
+            for (const movie of movies) {
+                this.mediaImageService.getMovieThumb(movie.ids.imdb)
+                    .then((result) => movie.thumbUrl = result);
+            }
         }
     }
 </script>

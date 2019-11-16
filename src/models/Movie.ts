@@ -12,8 +12,6 @@ export default class Movie {
         this._year = newYear;
         this._ids = newIds;
         this._thumbUrl = '';
-        FanartApi.instance.getMovieThumb(this._ids.imdb)
-            .then((result) => this._thumbUrl = result);
     }
 
     get year(): number {
@@ -30,5 +28,9 @@ export default class Movie {
 
     get thumbUrl(): string {
         return this._thumbUrl;
+    }
+
+    set thumbUrl(value: string) {
+        this._thumbUrl = value;
     }
 }

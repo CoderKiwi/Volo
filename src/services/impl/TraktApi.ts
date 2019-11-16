@@ -2,9 +2,10 @@ import axios, {AxiosInstance} from 'axios';
 import Movie from '@/models/Movie';
 import Ids from '@/models/Ids';
 import IMediaMetadataService from '@/services/IMediaMetadataService';
+import {injectable} from 'inversify-props';
 
+@injectable()
 export default class TraktApi implements IMediaMetadataService {
-    private static _instance: TraktApi;
     private static traktInstance: AxiosInstance = axios.create({
         baseURL: 'https://api.trakt.tv',
         timeout: 10000,
@@ -22,14 +23,6 @@ export default class TraktApi implements IMediaMetadataService {
             const newIds = new Ids(movData.ids.trakt, movData.ids.slug, movData.ids.imdb, movData.ids.tmdb);
             return new Movie(movData.title, movData.year, newIds);
         });
-    }
-
-    private constructor() {
-
-    }
-
-    public static get instance() {
-        return this._instance || (this._instance = new this());
     }
 
     public async getMoviesPopular(): Promise<Movie[]> {
