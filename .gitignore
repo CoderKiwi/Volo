@@ -6,8 +6,7 @@ node_modules
 selenium-debug.log
 
 # local env files
-.env.local
-.env.*.local
+*.env*
 
 # Log files
 npm-debug.log*
@@ -22,3 +21,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# JavaScript
+*.js
