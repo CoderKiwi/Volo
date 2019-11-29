@@ -2,7 +2,7 @@
   "name": "volo-server",
   "version": "0.1.0",
   "description": "",
-  "main": "main.ts",
+  "main": "src/main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,7 +19,8 @@
   "dependencies": {
     "axios": "^0.19.0",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "fast-xml-parser": "^3.15.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
