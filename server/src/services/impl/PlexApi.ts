@@ -1,5 +1,4 @@
 import axios, {AxiosInstance} from "axios";
-import xmlParser from 'fast-xml-parser';
 
 export default class PlexApi {
 
@@ -24,10 +23,10 @@ export default class PlexApi {
         return this._instance || (this._instance = new this());
     }
 
-    public async getPlexPin(): Promise<string> {
-        const endpoint = '/pins.xml';
+    public async getPlexPin(isStrong: boolean = true): Promise<string> {
+        const endpoint = `api/v2/pins.json?strong=${isStrong}`;
         const response = await PlexApi.plexInstance.post(endpoint);
-        return xmlParser.parse(response.data).pin.code;
+        return response.data.code as string;
     }
 
     public async signIn(username: string, password: string): Promise<string> {
