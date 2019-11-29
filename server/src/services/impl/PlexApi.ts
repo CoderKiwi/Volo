@@ -1,6 +1,7 @@
 import axios, {AxiosInstance} from "axios";
+import IMediaServerAuth from "../IMediaServerAuth";
 
-export default class PlexApi {
+export default class PlexApi implements IMediaServerAuth {
 
     private static _instance: PlexApi;
     private static plexInstance: AxiosInstance = axios.create({
